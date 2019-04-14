@@ -1,0 +1,45 @@
+/*vue响应式原理：*/
+  为什么不能检测到对象属性的添加或删除？
+  为什么不支持通过索引设置数组成员？
+
+vue响应式原理
+组件渲染函数            watcher
+    
+    
+virtual dom  
+
+vue中，通过Object.defineProperty将data中定义在属性做数据‘劫持’，用来支持相关操作的发布订阅(添加相应的getter/setter)
+this.list=[{},{}] 给list重新赋值，会触发setter,进而通知观察者(模板编译)作更新
+this.list[i]={text:i}来作数据更新，数据可以正常更新，但视图不会---不支持索引设置数组成员,性能
+this.list.forEach.text=((v,i)=>{v.text=i})给list做setter时，会先判断赋的新值是否为一个对象，如果是对象，再次劫持，并添加和list一样的观察者
+
+给对象添加/删除属性---使vue检测到
+vm.$set(target,key,value)---添加属性操作
+
+/*vue源码实现*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
